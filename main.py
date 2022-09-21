@@ -15,16 +15,11 @@ import tensorflow as tf
 
 
 def predict16(valMap, model, shape=256):
-    ## getting and proccessing val data
     img = valMap['img'][0:16]
     mask = valMap['mask'][0:16]
-    # mask = mask[0:16]
-
     imgProc = img[0:16]
     imgProc = np.array(img)
-
     predictions = model.predict(imgProc)
-
     return predictions, imgProc, mask
 
 
