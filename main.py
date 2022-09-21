@@ -8,42 +8,64 @@
 
 # imports -------------------------------------------------------------------------------------------------------------|
 import numpy as np
+import matplotlib.pyplot as plt
 from load_data import LoadData
 import tensorflow as tf
-from model_definition import GiveMeUnet
-import matplotlib.pyplot as plt
 # +--------------------------------------------------------------------------------------------------------------------|
+
+
+def predict16(valMap, model, shape=256):
+    ## getting and proccessing val data
+    img = valMap['img'][0:16]
+    mask = valMap['mask'][0:16]
+    # mask = mask[0:16]
+
+    imgProc = img[0:16]
+    imgProc = np.array(img)
+
+    predictions = model.predict(imgProc)
+
+    return predictions, imgProc, mask
+
+
+def Plotter(img, predMask, groundTruth):
+    plt.figure(figsize=(9, 9))
+
+    plt.subplot(1, 3, 1)
+    plt.imshow(img)
+    plt.title(' image')
+
+    plt.subplot(1, 3, 2)
+    plt.imshow(predMask)
+    plt.title('Predicted mask')
+
+    plt.subplot(1, 3, 3)
+    plt.imshow(groundTruth)
+    plt.title('Actual mask')
+
 
 frame_obj_train = {
     'img': [],
     'mask': []
 }
 
-frame_obj_train = LoadData(
-    frame_obj=frame_obj_train,
-    img_path='Dataset_BUSI_with_GT/benign',
-    mask_path='Dataset_BUSI_with_GT/benign',
-)
 
 frame_obj_train = LoadData(
-    frame_obj=frame_obj_train,
-    img_path='Dataset_BUSI_with_GT/malignant',
-    mask_path='Dataset_BUSI_with_GT/malignant'
+    frame_obj_train,
+    img_path='Dataset_BUSI_with_GT/normal',
+    mask_path='Dataset_BUSI_with_GT/normal'
 )
 
 
-inputs = tf.keras.layers.Input((256, 256, 3))
-my_transformer = GiveMeUnet(inputs, dropOuts=0.07)
-my_transformer.compile(optimizer='Adam', loss='binary_crossentropy', metrics=['accuracy'])
-
-retVal = my_transformer.fit(np.array(frame_obj_train['img']), np.array(frame_obj_train['mask']),
-                            epochs=50, verbose=0)
-
-plt.plot(retVal.history['loss'], label='training_loss')
-plt.plot(retVal.history['accuracy'], label='training_accuracy')
-plt.legend()
-plt.grid(True)
-
-my_transformer.save('BreastCancerSegmentor.h5')
+model_id = tf.keras.models.load_model(filepath='BreastCancerSegmentor.h5')
 
 
+six_teen_prediction, actual, masks = predict16(frame_obj_train, model=model_id)
+Plotter(actual[1], six_teen_prediction[1][:, :, 0], masks[1])
+Plotter(actual[2], six_teen_prediction[2][:, :, 0], masks[2])
+Plotter(actual[3], six_teen_prediction[3][:, :, 0], masks[3])
+Plotter(actual[4], six_teen_prediction[4][:, :, 0], masks[4])
+Plotter(actual[5], six_teen_prediction[5][:, :, 0], masks[5])
+Plotter(actual[6], six_teen_prediction[6][:, :, 0], masks[6])
+Plotter(actual[7], six_teen_prediction[7][:, :, 0], masks[7])
+plt.show()
