@@ -18,12 +18,12 @@ frame_obj_train = {
 }
 frame_obj_train = LoadData(
     frame_obj_train,
-    img_path='Dataset_BUSI_with_GT/malignant',
-    mask_path='Dataset_BUSI_with_GT/malignant'
+    img_path='Dataset_BUSI_with_GT/benign',
+    mask_path='Dataset_BUSI_with_GT/benign'
 )
 
 
 model_id = tf.keras.models.load_model(filepath='BreastCancerSegmentor.h5')
 predict_mask, real_img, real_mask = predict(frame_obj_train, model_id)
-plotter(real_img[0], predict_mask[0][:, :, 0], real_mask[0])
+plotter(real_img, predict_mask, real_mask)
 

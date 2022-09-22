@@ -37,7 +37,7 @@ my_transformer = GiveMeUnet(inputs, dropOuts=0.07)
 my_transformer.compile(optimizer='Adam', loss='binary_crossentropy', metrics=['accuracy'])
 
 retVal = my_transformer.fit(np.array(frame_obj_train['img']), np.array(frame_obj_train['mask']),
-                            epochs=50, verbose=0, batch_size=6)
+                            epochs=50, verbose=0)
 
 plt.plot(retVal.history['loss'], label='training_loss')
 plt.plot(retVal.history['accuracy'], label='training_accuracy')
