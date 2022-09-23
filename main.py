@@ -7,8 +7,8 @@
 # +--------------------------------------------------------------------------------------------------------------------+
 
 # imports -------------------------------------------------------------------------------------------------------------|
-from show_plt_img import predict, plotter
-from load_data import LoadData
+from plots.show_plt_img import predict, plotter
+from data.load_data import LoadData
 import tensorflow as tf
 # +--------------------------------------------------------------------------------------------------------------------|
 
@@ -18,8 +18,8 @@ frame_obj_train = {
 }
 frame_obj_train = LoadData(
     frame_obj_train,
-    img_path='Dataset_BUSI_with_GT/benign',
-    mask_path='Dataset_BUSI_with_GT/benign'
+    img_path='data/Dataset_BUSI_with_GT/benign',
+    mask_path='data/Dataset_BUSI_with_GT/benign'
 )
 
 

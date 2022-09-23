@@ -11,7 +11,7 @@ import cv2
 import os
 from typing import Union
 import matplotlib.pyplot as plt
-import log
+import logs.log as log
 # +--------------------------------------------------------------------------------------------------------------------|
 
 

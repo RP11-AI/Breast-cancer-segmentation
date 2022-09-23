@@ -8,7 +8,7 @@
 
 # imports -------------------------------------------------------------------------------------------------------------|
 import numpy as np
-from load_data import LoadData
+from data.load_data import LoadData
 import tensorflow as tf
 from model_definition import GiveMeUnet
 import matplotlib.pyplot as plt
