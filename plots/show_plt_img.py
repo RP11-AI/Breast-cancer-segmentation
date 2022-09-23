@@ -26,6 +26,7 @@ def plotter(img: np.array, predict_mask: np.array, ground_truth: np.array) -> No
 
     plt.figure(figsize=(10, 10))
 
+    # +================================================================================================================|
     plt.subplot(3, 3, 1), plt.imshow(img[0]), plt.title('Ultrasound')
 
     plt.subplot(3, 3, 2)
@@ -38,7 +39,7 @@ def plotter(img: np.array, predict_mask: np.array, ground_truth: np.array) -> No
     plt.imshow(ground_truth[0], interpolation='none', alpha=0.3)
     plt.title('Actual Segmentation')
 
-    # New Line
+    # +================================================================================================================|
     plt.subplot(3, 3, 4), plt.imshow(img[1]), plt.title('Ultrasound')
 
     plt.subplot(3, 3, 5)
@@ -51,7 +52,7 @@ def plotter(img: np.array, predict_mask: np.array, ground_truth: np.array) -> No
     plt.imshow(ground_truth[1], interpolation='none', alpha=0.3)
     plt.title('Actual Segmentation')
 
-    # New Line
+    # +================================================================================================================|
     plt.subplot(3, 3, 7), plt.imshow(img[2]), plt.title('Ultrasound')
 
     plt.subplot(3, 3, 8)
