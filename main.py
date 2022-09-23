@@ -18,8 +18,8 @@ frame_obj_train = {
 }
 frame_obj_train = LoadData(
     frame_obj_train,
-    img_path='data/Dataset_BUSI_with_GT/malignant',
-    mask_path='data/Dataset_BUSI_with_GT/malignant'
+    img_path='data/Dataset_BUSI_with_GT/normal',
+    mask_path='data/Dataset_BUSI_with_GT/normal'
 )
 
 
