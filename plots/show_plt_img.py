@@ -67,4 +67,3 @@ def plotter(img: np.array, predict_mask: np.array, ground_truth: np.array) -> No
 
     plt.show()
 
-
